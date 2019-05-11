@@ -4,6 +4,6 @@ export default props => (
   <div className="car">
     <p>Car name: {props.name}</p>
     <p>Year: {props.year}</p>
-    {props.children}
+    <button onClick={props.onChangeTitle}>Click</button>
   </div>
 )
