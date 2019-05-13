@@ -12,11 +12,7 @@ class App extends Component {
     ],
     pageTitle: 'App components',
     showCar: false
-  }
-
-  changeTitleHandler = value => {
-    this.setState({ pageTitle: value })
-  }
+  } 
 
   toggleHandler = () => {
     this.setState({
@@ -24,50 +20,57 @@ class App extends Component {
     })
   }
 
+  changeNameHandler = (value, index) => {
+    const cars = [...this.state.cars]
+    cars[index].name = value
+    this.setState({ cars })
+  }
+
+  deleteHandler(index) {
+    const cars = this.state.cars.concat()
+    cars.splice(index, 1)
+
+    this.setState({cars})
+  }
+
+  componentDidMount() {
+    console.log("App componentDidMount")
+  }
+
   render() {
 
-    let cars = this.state.cars.map((car, index) => {
-      return (
-        <Car
-          key={index}
-          name={car.name}
-          year={car.year}
-          onChangeTitle={() => this.changeTitleHandler(car.name)}
-        />
-      )
-    })
-    
-    if (!this.state.showCar) {
-      cars = null
+    console.log("App render")
+
+    let cars = null
+    if (this.state.showCar) {
+      cars = this.state.cars.map((car, index) => {
+        return (
+          <Car
+            key={index}
+            name={car.name}
+            year={car.year}
+            onDelete={this.deleteHandler.bind(this, index)}
+            onChangeName={event => this.changeNameHandler(event.target.value, index)}
+          />
+        )
+      })
     }
-    
+
     return (
       <div className="App" style={{textAlign: 'center'}}>
-        <h1>{ this.state.pageTitle }</h1>        
+        <h1>{ this.state.pageTitle }</h1>
         <button 
           onClick={() => this.toggleHandler()}
         >Toggle cars</button>
 
-        {/* { cars } */}
+        { cars }
 
-        {
-          this.state.showCar
-            ?
-              this.state.cars.map((car, index) => {
-                return (
-                  <Car
-                    key={index}
-                    name={car.name}
-                    year={car.year}
-                    onChangeTitle={() => this.changeTitleHandler(car.name)}
-                  />
-                )
-              })
-            :
-              null
-        }
       </div>
     )
+  }
+
+  componentWillMount() {
+    console.log("App componentWillMount")
   }
 
 }
