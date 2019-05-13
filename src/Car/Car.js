@@ -20,9 +20,9 @@ class Car extends React.Component {
     console.log('Car componentWillReceiveProps')
   }
   
-  static getDerivedStateFromProps(nextProps, prevSatte) {
-    console.log('Car componentWillReceiveProps', nextProps, prevSatte)
-  }
+  // static getDerivedStateFromProps(nextProps, prevSatte) {
+  //   console.log('Car componentWillReceiveProps', nextProps, prevSatte)
+  // }
 
   componentWillUnmount() {
     console.log('Car componentWillUnmount')
@@ -30,6 +30,10 @@ class Car extends React.Component {
 
   render() {
     console.log('Car render')
+
+    if(Math.random() > 0.7) {
+      throw new Error("some error")
+    }
     
     const classes = ['input']
 
