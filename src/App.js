@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import './App.css';
 import Car from './Car/Car'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import Counter from './Counter/Counter'
 
 class App extends Component {
 
   state = {
     cars: [
       { name: 'Jaguar', year: 2018 },
-      { name: 'Mazda', year: 2019 },
-      { name: 'Ford', year: 2020 },
+      // { name: 'Mazda', year: 2019 },
+      // { name: 'Ford', year: 2020 },
     ],
     pageTitle: 'App components',
     showCar: false
@@ -61,6 +62,10 @@ class App extends Component {
     return (
       <div className="App" style={{textAlign: 'center'}}>
         <h1>{ this.state.pageTitle }</h1>
+
+        <Counter/>
+        <hr/>
+
         <button 
           onClick={() => this.toggleHandler()}
         >Toggle cars</button>
@@ -70,11 +75,6 @@ class App extends Component {
       </div>
     )
   }
-
-  componentWillMount() {
-    console.log("App componentWillMount")
-  }
-
 }
 
 export default App;
